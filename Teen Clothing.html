@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teen Clothing - Sri Lanka</title>
+    <style>
+        /* මූලික සැකසුම් (General Styles) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            background-color: var(--light-gray);
+        }
+
+        /* වර්ණ මාලාව (Color Variables) */
+        :root {
+            --main-blue: #003366;
+            --main-yellow: #FFD700;
+            --women-pink: #FF1493;
+            --men-green: #008000;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: var(--main-blue);
+            color: var(--main-yellow);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--main-yellow);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: var(--main-yellow);
+        }
+
+        /* මුල් පිටුව (Hero Section - Blue & Yellow) */
+        .hero {
+            background-color: var(--main-blue);
+            color: var(--main-yellow);
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .hero span {
+            color: var(--main-yellow);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--white);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn-main {
+            background-color: var(--main-yellow);
+            color: var(--main-blue);
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            background-color: #fff;
+        }
+
+        /* ජංගම යෙදුම් ප්‍රවර්ධනය (App Promo) */
+        .app-promo {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--white);
+            border-bottom: 3px solid var(--main-yellow);
+        }
+
+        .app-promo h2 {
+            color: var(--main-blue);
+            font-size: 2rem;
+        }
+        
+        .app-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-app {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+
+        .btn-app.google {
+            background-color: #4285F4;
+        }
+
+        .btn-app.apple {
+            background-color: #000000;
+        }
+        
+        /* කාණ්ඩ තෝරාගැනීම (Category Selection) */
+        .category-section {
+            padding: 50px 0;
+        }
+
+        .category-section.women {
+            background: linear-gradient(to right, #ffe6f2, #fff9c4);
+            border-top: 5px solid var(--women-pink);
+        }
+
+        .category-header.women {
+            color: var(--women-pink);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .category-section.men {
+            background: linear-gradient(to right, #e8f5e9, #fff9c4);
+            border-top: 5px solid var(--men-green);
+        }
+
+        .category-header.men {
+            color: var(--men-green);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* ඇඳුම් කාඩ්පත් (Product Grid) */
+        .container {
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .product-price {
+            color: var(--main-blue);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background-color: #25D366; 
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        /* අප ගැන කොටස (About Section) */
+        .about-section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: var(--white);
+            border-top: 3px solid var(--main-yellow);
+        }
+        .about-section h2 {
+            color: var(--main-blue);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .about-content p {
+            margin-bottom: 15px;
+        }
+        .group-signature {
+            margin-top: 30px;
+            text-align: right;
+            font-size: 1.2rem;
+            color: var(--main-blue);
+        }
+
+        /* සමාජ මාධ්‍ය බෙදාගැනීම (Share Section) */
+        .share-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: var(--light-gray);
+            border-top: 2px solid #ddd;
+        }
+
+        .share-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .share-buttons button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            transition: opacity 0.3s;
+        }
+
+        .share-buttons button:nth-child(1) {
+            background-color: #25D366;
+        }
+
+        .share-buttons button:nth-child(2) {
+            background-color: #1877F2;
+        }
+
+        .share-buttons button:nth-child(3) {
+            background-color: #1DA1F2;
+        }
+        
+        /* සම්බන්ධ කරගැනීමට (Contact Section) */
+        .contact-section {
+            background-color: var(--main-blue);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .contact-number {
+            font-size: 2rem;
+            color: var(--main-yellow);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: #002244;
+            color: #aaa;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            .app-links { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Teen Clothing</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#women">Women (50)</a></li>
+                    <li><a href="#men">Men (50)</a></li>
+                    <li><a href="#about">About</a></li> 
+                    <li><a href="#share">Share</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Teen <span>Clothing</span></h1>
+        <p>නවීන පන්නයේ ශ්‍රී ලාංකික තාරුණ්‍යයේ විලාසිතා එකතුව. සාමාන්‍ය ගමනට බිමනට සහ උත්සව අවස්ථාවන්ට ගැලපෙන හොඳම ඇඳුම්.</p>
+        <a href="#app" class="btn-main">Mobile App Download කරන්න</a>
+    </section>
+    
+    <section id="app" class="app-promo">
+        <h2>🛍️ ඔබගේ ඇඳුම් මිලදී ගැනීම තවත් පහසුයි!</h2>
+        <p>අපගේ Mobile Application එක දැන්ම Download කර පහසුවෙන් ඇණවුම් කරන්න.</p>
+        <div class="app-links">
+            <a href="#" class="btn-app google">Google Play Store</a>
+            <a href="#" class="btn-app apple">Apple App Store</a>
+        </div>
+    </section>
+
+    <section id="women" class="category-section women">
+        <h2 class="category-header women">Women's Collection (කාන්තා - 50 Items)</h2>
+        <div class="container">
+            
+            <div class="product-card"><div class="product-image">Women Product Image 01</div><h3 class="product-title">Women's Frock (01)</h3><span class="product-price">Rs. 2,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2001%20(Price%20Rs.%202500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 02</div><h3 class="product-title">Women's Top (02)</h3><span class="product-price">Rs. 1,800.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2002%20(Price%20Rs.%201800)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 03</div><h3 class="product-title">Women's Denim (03)</h3><span class="product-price">Rs. 3,200.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2003%20(Price%20Rs.%203200)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 04</div><h3 class="product-title">Women's Blouse (04)</h3><span class="product-price">Rs. 1,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2004%20(Price%20Rs.%201900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 05</div><h3 class="product-title">Women's Skirt (05)</h3><span class="product-price">Rs. 2,100.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2005%20(Price%20Rs.%202100)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 06</div><h3 class="product-title">Women's Jumpsuit (06)</h3><span class="product-price">Rs. 3,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2006%20(Price%20Rs.%203500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 07</div><h3 class="product-title">Women's Leggings (07)</h3><span class="product-price">Rs. 1,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2007%20(Price%20Rs.%201500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 08</div><h3 class="product-title">Women's Hoodie (08)</h3><span class="product-price">Rs. 2,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2008%20(Price%20Rs.%202900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 09</div><h3 class="product-title">Women's Jacket (09)</h3><span class="product-price">Rs. 4,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2009%20(Price%20Rs.%204500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 10</div><h3 class="product-title">Women's Formal Top (10)</h3><span class="product-price">Rs. 2,300.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2010%20(Price%20Rs.%202300)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 11</div><h3 class="product-title">Women's Maxi Dress (11)</h3><span class="product-price">Rs. 4,800.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2011%20(Price%20Rs.%204800)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 12</div><h3 class="product-title">Women's Crop Top (12)</h3><span class="product-price">Rs. 1,200.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2012%20(Price%20Rs.%201200)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 13</div><h3 class="product-title">Women's Shorts (13)</h3><span class="product-price">Rs. 1,600.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2013%20(Price%20Rs.%201600)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 14</div><h3 class="product-title">Women's Sweater (14)</h3><span class="product-price">Rs. 3,100.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2014%20(Price%20Rs.%203100)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 15</div><h3 class="product-title">Women's Overcoat (15)</h3><span class="product-price">Rs. 5,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2015%20(Price%20Rs.%205500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 16</div><h3 class="product-title">Women's Shirt Dress (16)</h3><span class="product-price">Rs. 3,400.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2016%20(Price%20Rs.%203400)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 17</div><h3 class="product-title">Women's Palazzo Pants (17)</h3><span class="product-price">Rs. 2,600.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2017%20(Price%20Rs.%202600)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 18</div><h3 class="product-title">Women's Bodysuit (18)</h3><span class="product-price">Rs. 1,700.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2018%20(Price%20Rs.%201700)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 19</div><h3 class="product-title">Women's Midi Skirt (19)</h3><span class="product-price">Rs. 2,400.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2019%20(Price%20Rs.%202400)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 20</div><h3 class="product-title">Women's Trench Coat (20)</h3><span class="product-price">Rs. 6,000.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2020%20(Price%20Rs.%206000)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 21</div><h3 class="product-title">Women's Boho Dress (21)</h3><span class="product-price">Rs. 3,800.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2021%20(Price%20Rs.%203800)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 22</div><h3 class="product-title">Women's Tube Top (22)</h3><span class="product-price">Rs. 1,100.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2022%20(Price%20Rs.%201100)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 23</div><h3 class="product-title">Women's Cargo Pants (23)</h3><span class="product-price">Rs. 3,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2023%20(Price%20Rs.%203500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 24</div><h3 class="product-title">Women's Cardigan (24)</h3><span class="product-price">Rs. 2,950.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2024%20(Price%20Rs.%202950)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 25</div><h3 class="product-title">Women's Party Dress (25)</h3><span class="product-price">Rs. 4,990.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2025%20(Price%20Rs.%204990)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 26</div><h3 class="product-title">Women's Pencil Skirt (26)</h3><span class="product-price">Rs. 2,150.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2026%20(Price%20Rs.%202150)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 27</div><h3 class="product-title">Women's Kimono (27)</h3><span class="product-price">Rs. 2,800.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2027%20(Price%20Rs.%202800)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 28</div><h3 class="product-title">Women's Blazer (28)</h3><span class="product-price">Rs. 4,100.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2028%20(Price%20Rs.%204100)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 29</div><h3 class="product-title">Women's Halter Top (29)</h3><span class="product-price">Rs. 1,450.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2029%20(Price%20Rs.%201450)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 30</div><h3 class="product-title">Women's Culottes (30)</h3><span class="product-price">Rs. 2,750.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2030%20(Price%20Rs.%202750)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 31</div><h3 class="product-title">Women's Slip Dress (31)</h3><span class="product-price">Rs. 3,300.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2031%20(Price%20Rs.%203300)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 32</div><h3 class="product-title">Women's Tunic (32)</h3><span class="product-price">Rs. 2,200.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2032%20(Price%20Rs.%202200)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 33</div><h3 class="product-title">Women's Sweatpants (33)</h3><span class="product-price">Rs. 2,650.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2033%20(Price%20Rs.%202650)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 34</div><h3 class="product-title">Women's Vest (34)</h3><span class="product-price">Rs. 1,000.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2034%20(Price%20Rs.%201000)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 35</div><h3 class="product-title">Women's Denim Skirt (35)</h3><span class="product-price">Rs. 2,850.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2035%20(Price%20Rs.%202850)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 36</div><h3 class="product-title">Women's High-Waist Jeans (36)</h3><span class="product-price">Rs. 3,600.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2036%20(Price%20Rs.%203600)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 37</div><h3 class="product-title">Women's Bodycon Dress (37)</h3><span class="product-price">Rs. 3,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2037%20(Price%20Rs.%203900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 38</div><h3 class="product-title">Women's Off-Shoulder Top (38)</h3><span class="product-price">Rs. 1,990.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2038%20(Price%20Rs.%201990)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 39</div><h3 class="product-title">Women's Ankle Pants (39)</h3><span class="product-price">Rs. 2,450.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2039%20(Price%20Rs.%202450)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 40</div><h3 class="product-title">Women's Pea Coat (40)</h3><span class="product-price">Rs. 5,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2040%20(Price%20Rs.%205900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 41</div><h3 class="product-title">Women's Gown (41)</h3><span class="product-price">Rs. 7,000.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2041%20(Price%20Rs.%207000)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 42</div><h3 class="product-title">Women's V-Neck T-Shirt (42)</h3><span class="product-price">Rs. 1,300.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2042%20(Price%20Rs.%201300)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 43</div><h3 class="product-title">Women's Chinos (43)</h3><span class="product-price">Rs. 2,700.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2043%20(Price%20Rs.%202700)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 44</div><h3 class="product-title">Women's Puffer Vest (44)</h3><span class="product-price">Rs. 3,000.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2044%20(Price%20Rs.%203000)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 45</div><h3 class="product-title">Women's Shift Dress (45)</h3><span class="product-price">Rs. 2,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2045%20(Price%20Rs.%202900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 46</div><h3 class="product-title">Women's Linen Trousers (46)</h3><span class="product-price">Rs. 2,350.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2046%20(Price%20Rs.%202350)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 47</div><h3 class="product-title">Women's Peplum Top (47)</h3><span class="product-price">Rs. 1,850.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2047%20(Price%20Rs.%201850)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 48</div><h3 class="product-title">Women's Wrap Skirt (48)</h3><span class="product-price">Rs. 2,550.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2048%20(Price%20Rs.%202550)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 49</div><h3 class="product-title">Women's Cropped Jacket (49)</h3><span class="product-price">Rs. 3,700.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2049%20(Price%20Rs.%203700)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Women Product Image 50</div><h3 class="product-title">Women's Party Frock (50)</h3><span class="product-price">Rs. 4,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Women%20Product%2050%20(Price%20Rs.%204500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            
+            </div>
+    </section>
+
+    <section id="men" class="category-section men">
+        <h2 class="category-header men">Men's Collection (පිරිමි - 50 Items)</h2>
+        <div class="container">
+            
+            <div class="product-card"><div class="product-image">Men Product Image 01</div><h3 class="product-title">Men's Printed T-Shirt (01)</h3><span class="product-price">Rs. 1,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2001%20(Price%20Rs.%201500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 02</div><h3 class="product-title">Men's Casual Shirt (02)</h3><span class="product-price">Rs. 2,800.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2002%20(Price%20Rs.%202800)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 03</div><h3 class="product-title">Men's Cargo Pants (03)</h3><span class="product-price">Rs. 3,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2003%20(Price%20Rs.%203500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 04</div><h3 class="product-title">Men's Polo T-Shirt (04)</h3><span class="product-price">Rs. 1,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2004%20(Price%20Rs.%201900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 05</div><h3 class="product-title">Men's Denim Jeans (05)</h3><span class="product-price">Rs. 3,800.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2005%20(Price%20Rs.%203800)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 06</div><h3 class="product-title">Men's Sweatshirt (06)</h3><span class="product-price">Rs. 2,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2006%20(Price%20Rs.%202900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 07</div><h3 class="product-title">Men's Formal Shirt (07)</h3><span class="product-price">Rs. 3,200.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2007%20(Price%20Rs.%203200)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 08</div><h3 class="product-title">Men's Chinos (08)</h3><span class="product-price">Rs. 2,700.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2008%20(Price%20Rs.%202700)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 09</div><h3 class="product-title">Men's Bomber Jacket (09)</h3><span class="product-price">Rs. 4,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2009%20(Price%20Rs.%204900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 10</div><h3 class="product-title">Men's Track Pants (10)</h3><span class="product-price">Rs. 2,400.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2010%20(Price%20Rs.%202400)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 11</div><h3 class="product-title">Men's V-Neck Tee (11)</h3><span class="product-price">Rs. 1,400.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2011%20(Price%20Rs.%201400)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 12</div><h3 class="product-title">Men's Hooded Jacket (12)</h3><span class="product-price">Rs. 3,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2012%20(Price%20Rs.%203900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 13</div><h3 class="product-title">Men's Dress Pants (13)</h3><span class="product-price">Rs. 3,100.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2013%20(Price%20Rs.%203100)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 14</div><h3 class="product-title">Men's Casual Blazer (14)</h3><span class="product-price">Rs. 5,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2014%20(Price%20Rs.%205500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 15</div><h3 class="product-title">Men's Knit Sweater (15)</h3><span class="product-price">Rs. 3,300.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2015%20(Price%20Rs.%203300)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 16</div><h3 class="product-title">Men's Short-Sleeve Shirt (16)</h3><span class="product-price">Rs. 2,100.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2016%20(Price%20Rs.%202100)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 17</div><h3 class="product-title">Men's Slim Fit Jeans (17)</h3><span class="product-price">Rs. 3,990.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2017%20(Price%20Rs.%203990)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 18</div><h3 class="product-title">Men's Windbreaker (18)</h3><span class="product-price">Rs. 4,200.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2018%20(Price%20Rs.%204200)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 19</div><h3 class="product-title">Men's Henley Shirt (19)</h3><span class="product-price">Rs. 1,750.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2019%20(Price%20Rs.%201750)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 20</div><h3 class="product-title">Men's Swim Shorts (20)</h3><span class="product-price">Rs. 1,650.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2020%20(Price%20Rs.%201650)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 21</div><h3 class="product-title">Men's Denim Jacket (21)</h3><span class="product-price">Rs. 4,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2021%20(Price%20Rs.%204500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 22</div><h3 class="product-title">Men's Linen Shirt (22)</h3><span class="product-price">Rs. 2,600.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2022%20(Price%20Rs.%202600)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 23</div><h3 class="product-title">Men's Joggers (23)</h3><span class="product-price">Rs. 2,550.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2023%20(Price%20Rs.%202550)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 24</div><h3 class="product-title">Men's Flannel Shirt (24)</h3><span class="product-price">Rs. 2,950.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2024%20(Price%20Rs.%202950)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 25</div><h3 class="product-title">Men's Vest/Tank Top (25)</h3><span class="product-price">Rs. 1,100.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2025%20(Price%20Rs.%201100)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 26</div><h3 class="product-title">Men's Cotton Shorts (26)</h3><span class="product-price">Rs. 1,850.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2026%20(Price%20Rs.%201850)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 27</div><h3 class="product-title">Men's Trench Coat (27)</h3><span class="product-price">Rs. 6,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2027%20(Price%20Rs.%206500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 28</div><h3 class="product-title">Men's Dress Shirt (28)</h3><span class="product-price">Rs. 3,450.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2028%20(Price%20Rs.%203450)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 29</div><h3 class="product-title">Men's Cardigan (29)</h3><span class="product-price">Rs. 3,150.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2029%20(Price%20Rs.%203150)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 30</div><h3 class="product-title">Men's Turtleneck (30)</h3><span class="product-price">Rs. 2,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2030%20(Price%20Rs.%202900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 31</div><h3 class="product-title">Men's Formal Trousers (31)</h3><span class="product-price">Rs. 3,600.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2031%20(Price%20Rs.%203600)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 32</div><h3 class="product-title">Men's Cargo Shorts (32)</h3><span class="product-price">Rs. 2,100.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2032%20(Price%20Rs.%202100)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 33</div><h3 class="product-title">Men's Leather Jacket (33)</h3><span class="product-price">Rs. 8,500.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2033%20(Price%20Rs.%208500)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 34</div><h3 class="product-title">Men's Hooded T-Shirt (34)</h3><span class="product-price">Rs. 1,950.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2034%20(Price%20Rs.%201950)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 35</div><h3 class="product-title">Men's Corduroy Pants (35)</h3><span class="product-price">Rs. 3,000.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2035%20(Price%20Rs.%203000)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 36</div><h3 class="product-title">Men's Quilted Jacket (36)</h3><span class="product-price">Rs. 4,800.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2036%20(Price%20Rs.%204800)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 37</div><h3 class="product-title">Men's Graphic T-Shirt (37)</h3><span class="product-price">Rs. 1,600.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2037%20(Price%20Rs.%201600)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 38</div><h3 class="product-title">Men's Casual Trousers (38)</h3><span class="product-price">Rs. 2,650.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2038%20(Price%20Rs.%202650)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 39</div><h3 class="product-title">Men's Sweater Vest (39)</h3><span class="product-price">Rs. 2,200.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2039%20(Price%20Rs.%202200)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 40</div><h3 class="product-title">Men's Long-Sleeve T-Shirt (40)</h3><span class="product-price">Rs. 1,800.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2040%20(Price%20Rs.%201800)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 41</div><h3 class="product-title">Men's Work Shirt (41)</h3><span class="product-price">Rs. 2,750.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2041%20(Price%20Rs.%202750)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 42</div><h3 class="product-title">Men's Slim Fit Chinos (42)</h3><span class="product-price">Rs. 2,850.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2042%20(Price%20Rs.%202850)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 43</div><h3 class="product-title">Men's Parka Jacket (43)</h3><span class="product-price">Rs. 7,200.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2043%20(Price%20Rs.%207200)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 44</div><h3 class="product-title">Men's Half-Zip Sweater (44)</h3><span class="product-price">Rs. 3,050.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2044%20(Price%20Rs.%203050)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 45</div><h3 class="product-title">Men's Poplin Shirt (45)</h3><span class="product-price">Rs. 2,450.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2045%20(Price%20Rs.%202450)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 46</div><h3 class="product-title">Men's Board Shorts (46)</h3><span class="product-price">Rs. 1,700.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2046%20(Price%20Rs.%201700)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 47</div><h3 class="product-title">Men's Denim Overalls (47)</h3><span class="product-price">Rs. 4,300.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2047%20(Price%20Rs.%204300)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 48</div><h3 class="product-title">Men's Crewneck T-Shirt (48)</h3><span class="product-price">Rs. 1,250.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2048%20(Price%20Rs.%201250)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 49</div><h3 class="product-title">Men's Hoodie with Zip (49)</h3><span class="product-price">Rs. 3,650.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2049%20(Price%20Rs.%203650)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            <div class="product-card"><div class="product-image">Men Product Image 50</div><h3 class="product-title">Men's Tailored Suit (50)</h3><span class="product-price">Rs. 9,900.00</span><a href="https://wa.me/94740465946?text=I%20want%20to%20buy%20Men%20Product%2050%20(Price%20Rs.%209900)" target="_blank" class="btn-whatsapp">WhatsApp Order</a></div>
+            
+            </div>
+    </section>
+    
+    <section id="about" class="about-section">
+        <h2>අප ගැන (About Us)</h2>
+        <div class="about-content">
+            <p>Teen Clothing යනු ශ්‍රී ලාංකික නව යෞවන විලාසිතා ක්ෂේත්‍රයේ නවමු වෙනසක් ඇති කිරීමේ අරමුණින් **2025** වර්ෂයේදී ආරම්භ කරන ලද ව්‍යාපාරයකි.</p>
+            <p>මෙම ව්‍යාපාරයේ නිර්මාතෘවරයා වන <b>Udara Gunawardhana</b> මහතාගේ මූලිකත්වයෙන්, නවීන පන්නයේ උසස් තත්ත්වයේ ඇඳුම් සාධාරණ මිලට පාරිභෝගිකයා වෙත ගෙන ඒම අපගේ ප්‍රමුඛ අරමුණයි.</p>
+            <p>අපගේ සියලුම ඇණවුම් සහ ක්‍රියාවලීන් කළමනාකරණය කරනු ලබන්නේ,</p>
+            <p class="group-signature"><b>Gunawardane group</b></p>
+        </div>
+    </section>
+
+    <section id="share" class="share-section">
+        <h2>🔗 මෙම වෙබ් අඩවිය බෙදාගන්න (Share)</h2>
+        <p>ඔබගේ මිතුරන් අතර අපගේ නවතම විලාසිතා බෙදාහරින්න.</p>
+        <div class="share-buttons">
+            <button onclick="shareLink('whatsapp')">💬 WhatsApp</button>
+            <button onclick="shareLink('facebook')">📘 Facebook</button>
+            <button onclick="shareLink('twitter')">🐦 X / Twitter</button>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>අපව අමතන්න (Contact Us)</h2>
+        <p>ඇණවුම් භාරදීම සහ වැඩි විස්තර සඳහා අප අමතන්න.</p>
+        <div class="contact-number">📞 074 046 5946</div>
+        <a href="https://wa.me/94740465946" class="btn-main">Chat on WhatsApp</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Teen Clothing Sri Lanka. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function shareLink(platform) {
+            const url = encodeURIComponent(window.location.href); 
+            const text = encodeURIComponent("Teen Clothing - නවතම ශ්‍රී ලාංකික තරුණ විලාසිතා බලන්න!");
+
+            let shareUrl = "";
+
+            if (platform === 'whatsapp') {
+                shareUrl = `https://wa.me/?text=${text}%20${url}`;
+            } else if (platform === 'facebook') {
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+            } else if (platform === 'twitter') {
+                shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+            }
+
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+    </script>
+
+</body>
+</html>
